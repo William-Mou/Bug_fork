@@ -13,11 +13,11 @@ int main(){
     int exit_status;
     int keep = -1;
     pid_t PID[6];
-
+     pid_t fork_state; 
     for(int i=0; i<BUG_COUNT; i++)
     {
-        printf("[parent]%d\n",i);
-        pid_t fork_state = vfork(); 
+        //printf("[parent]%d\n",i);
+        fork_state = vfork(); 
         keep = i;
         if (fork_state ==0)
             break;
@@ -32,16 +32,16 @@ int main(){
     };
     //printf("[parent]");
     char cstr[bugs[keep].size() + 1];
-    switch(PID[keep])
+    switch(fork_state)
     {
         case -1:
             perror("fork()");
             exit(-1);
         case 0:
             PID[keep] = getpid();
-            printf("[Child] Child's PID is %d\n", getpid());
-            printf("[Child] i is %d \n",keep);
-            //for (int _=0; _<3; _++)
+            //printf("[Child] Child's PID is %d\n", getpid());
+            //printf("[Child] i is %d \n",keep);
+            for (int _=0; _<3; _++)
                 printf("Bug HaHa Bug!!\n");
             //std::cout << bugs[keep];
             strcpy(cstr, bugs[keep].c_str());
@@ -49,13 +49,13 @@ int main(){
             execlp(cstr,cstr,NULL);
             break;
         default:
-            sleep(5);
+            //sleep(5);
             int status;
             //std::cout << PID[0];
             waitpid(PID[0], &status, 2);
             //std::cout << status;
             int exit_status = WEXITSTATUS(status);         
-            printf("Waaa QAQ, I Hate U!! Here is  %d\n", exit_status); 
+            printf("[PID=%d]Waaa QAQ, I Hate U!! Here is  %d\n",getpid(), exit_status); 
     }
     return 0;
 }
