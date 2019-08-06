@@ -1,5 +1,0 @@
-while true
-do 
-echo "bug!!"
-sleep 1
-done
