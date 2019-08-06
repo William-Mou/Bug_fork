@@ -23,11 +23,11 @@ int main(){
     }
     std::string bugs[BUG_COUNT] = {
     "Lymantria dispar",
-    "Tenebrio molitor",
-    "Tessaratoma papillosa",
-    "Lampyridae",
-    "Siphonaptera",
-    "Chironomidae"
+    "Eevee",
+    "Canis lupus",
+    "Aegithalos caudatus",
+    "Phocidae",
+    "Felis catus"
     };
     char cstr[bugs[keep].size() + 1];
     switch(fork_state)
@@ -37,9 +37,9 @@ int main(){
             exit(-1);
         case 0:
             PID[keep] = getpid();
-            //printf("[Child] Child's PID is %d\n", getpid());
-            //printf("[Child] i is %d \n",keep);
-            for (int _=0; _<3; _++)
+            printf("[Child] Child's PID is %d\n", getpid());
+            printf("[Child] i is %d \n",keep);
+            for (int _=0; _<10; _++)
                 printf("Bug HaHa Bug!!\n");
             strcpy(cstr, bugs[keep].c_str());
             execlp(cstr,cstr,NULL);
