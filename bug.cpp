@@ -37,8 +37,8 @@ int main(){
             exit(-1);
         case 0:
             PID[keep] = getpid();
-            printf("[Child] Child's PID is %d\n", getpid());
-            printf("[Child] i is %d \n",keep);
+            //printf("[Child] Child's PID is %d\n", getpid());
+            //printf("[Child] i is %d \n",keep);
             for (int _=0; _<10; _++)
                 printf("Bug HaHa Bug!!\n");
             strcpy(cstr, bugs[keep].c_str());
@@ -48,7 +48,7 @@ int main(){
             int status;
             waitpid(PID[0], &status, 2);
             int exit_status = WEXITSTATUS(status);         
-            printf("[PID=%d]Waaa QAQ, I Hate U!! Here is  %d\n",getpid(), exit_status); 
+            printf("Waaa QAQ, I Hate U!!\n~~~~~~~~~~~~~~\nQWE→ESZ→ZXC\nRFV→VGY\nUJM→UIO→JKL\nEWQ→QAZ→ZXC\nRTY→YHN→NBV→VFR\nUJM→UIO→OL→LKJ\n"); 
     }
     return 0;
 }
