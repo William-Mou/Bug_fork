@@ -1,4 +1,4 @@
-/* parent.cpp */
+/* bug.cpp */
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -16,7 +16,6 @@ int main(){
      pid_t fork_state; 
     for(int i=0; i<BUG_COUNT; i++)
     {
-        //printf("[parent]%d\n",i);
         fork_state = vfork(); 
         keep = i;
         if (fork_state ==0)
@@ -30,7 +29,6 @@ int main(){
     "Siphonaptera",
     "Chironomidae"
     };
-    //printf("[parent]");
     char cstr[bugs[keep].size() + 1];
     switch(fork_state)
     {
@@ -43,17 +41,12 @@ int main(){
             //printf("[Child] i is %d \n",keep);
             for (int _=0; _<3; _++)
                 printf("Bug HaHa Bug!!\n");
-            //std::cout << bugs[keep];
             strcpy(cstr, bugs[keep].c_str());
-            //std::cout << cstr;
             execlp(cstr,cstr,NULL);
             break;
         default:
-            //sleep(5);
             int status;
-            //std::cout << PID[0];
             waitpid(PID[0], &status, 2);
-            //std::cout << status;
             int exit_status = WEXITSTATUS(status);         
             printf("[PID=%d]Waaa QAQ, I Hate U!! Here is  %d\n",getpid(), exit_status); 
     }
